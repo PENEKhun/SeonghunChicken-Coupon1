@@ -29,6 +29,6 @@ public class CouponPage {
   @GetMapping("/coupon-issue/{couponId}")
   public String couponIssue(@PathVariable String couponId, Model model) {
     model.addAttribute("coupon", couponService.getCoupon(couponId).toResponse());
-    return "coupon-issue";
+    return "coupon-detail";
   }
 }

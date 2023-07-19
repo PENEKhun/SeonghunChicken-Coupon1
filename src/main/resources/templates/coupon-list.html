@@ -16,7 +16,7 @@
       <li>
         <div class="coupon-name" th:text="${coupon.getName()}"></div>
         <div class="coupon-quantity" th:text="${coupon.getRemainCount()} + '개 남음'"></div>
-        <a th:href="'/coupon-issue/' + ${coupon.getId()}" class="get-coupon-btn">자세히 보기</a>
+        <a th:href="'/coupon-detail/' + ${coupon.getId()}" class="get-coupon-btn">자세히 보기</a>
       </li>
     </th:block>
   </ul>
