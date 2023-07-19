@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,5 +24,11 @@ public class CouponPage {
         .toList();
     model.addAttribute("couponList", couponResponses);
     return "coupon-list";
+  }
+
+  @GetMapping("/coupon-issue/{couponId}")
+  public String couponIssue(@PathVariable String couponId, Model model) {
+    model.addAttribute("coupon", couponService.getCoupon(couponId).toResponse());
+    return "coupon-issue";
   }
 }
