@@ -11,7 +11,7 @@
 <body>
 <div class="container">
   <h1>성훈치킨 개업축하 기념</h1>
-  <p>남은 쿠폰 개수: <span id="remaining-coupons"> ???? </span></p>
+  <p>남은 쿠폰 개수: <span id="remaining-coupons" th:text="${remainCount}"></span></p>
   <button id="get-coupon-btn" onclick="getCoupon()">쿠폰 받기</button>
   <div id="coupon-result"></div>
 </div>
