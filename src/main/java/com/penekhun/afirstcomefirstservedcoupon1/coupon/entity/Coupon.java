@@ -7,13 +7,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.util.UUID;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Getter
-@NoArgsConstructor
 @Table(name = "coupon_config")
 public class Coupon {
 
@@ -35,6 +33,9 @@ public class Coupon {
     this.id = id;
     this.name = name;
     this.remainCount = remainCount;
+  }
+
+  private Coupon() {
   }
 
   public static Coupon createNewCoupon(String name, Integer remainCount) {
