@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>성훈치킨 쿠폰 모음</title>
+  <link rel="stylesheet" type="text/css" href="/style/style.css">
+</head>
+<body>
+<div class="container">
+  <h1>성훈치킨 쿠폰 리스트</h1>
+  <ul id="coupon-list">
+    <th:block th:each="coupon : ${couponList}">
+      <li>
+        <div class="coupon-name" th:text="${coupon.getName()}"></div>
+        <div class="coupon-quantity" th:text="${coupon.getRemainCount()} + '개 남음'"></div>
+        <a th:href="'/coupon-issue?id=' + ${coupon.getId()}" class="get-coupon-btn">발급</a>
+      </li>
+    </th:block>
+  </ul>
+</div>
+</body>
+</html>
