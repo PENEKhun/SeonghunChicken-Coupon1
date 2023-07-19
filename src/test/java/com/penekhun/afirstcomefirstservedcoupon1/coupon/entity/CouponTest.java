@@ -13,13 +13,14 @@ class CouponTest {
   void can_create_coupon_using_factory_method() {
     // given
     String name = "테스트 쿠폰";
+    String description = "테스트 쿠폰입니다.";
     Integer remainCount = 100;
 
     // when & then
-    assertThat(Coupon.createNewCoupon(name, remainCount))
+    assertThat(Coupon.createNewCoupon(name, description, remainCount))
         .isInstanceOf(Coupon.class)
-        .extracting("name", "remainCount")
-        .containsExactly(name, remainCount);
+        .extracting("name", "description", "remainCount")
+        .containsExactly(name, description, remainCount);
   }
 
   @Test
@@ -31,7 +32,7 @@ class CouponTest {
     // when & then
     Assertions.assertThrows(
         IllegalArgumentException.class,
-        () -> Coupon.createNewCoupon("테스트 쿠폰", remainCount),
+        () -> Coupon.createNewCoupon("테스트 쿠폰", "테스트 쿠폰 입니다.", remainCount),
         "남은 쿠폰의 갯수는 0보다 커야 합니다."
     );
   }
@@ -45,7 +46,7 @@ class CouponTest {
     // when & then
     Assertions.assertThrows(
         IllegalArgumentException.class,
-        () -> Coupon.createNewCoupon("테스트 쿠폰", remainCount),
+        () -> Coupon.createNewCoupon("테스트 쿠폰", "테스트 쿠폰 입니다.", remainCount),
         "남은 쿠폰의 갯수는 0보다 커야 합니다."
     );
   }

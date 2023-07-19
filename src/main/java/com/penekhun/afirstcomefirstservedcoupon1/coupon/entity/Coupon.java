@@ -25,27 +25,32 @@ public class Coupon {
   private UUID id;
 
   @Column(name = "name", length = 30, columnDefinition = "VARCHAR(30)")
-  @Comment("발급될 쿠폰의 이름 또는 설명")
+  @Comment("발급될 쿠폰의 이름")
   private String name;
+
+  @Column(name = "description", length = 500, columnDefinition = "VARCHAR(500)")
+  @Comment("발급될 쿠폰의 설명")
+  private String description;
 
   @Column(name = "remain_count", nullable = false)
   @Comment("남은 쿠폰의 갯수")
   private Integer remainCount;
 
-  private Coupon(UUID id, String name, Integer remainCount) {
+  private Coupon(UUID id, String name, String description, Integer remainCount) {
     this.id = id;
     this.name = name;
+    this.description = description;
     this.remainCount = remainCount;
   }
 
-  public static Coupon createNewCoupon(String name, Integer remainCount) {
+  public static Coupon createNewCoupon(String name, String description, Integer remainCount) {
     if (remainCount <= 0) {
       throw new IllegalArgumentException("남은 쿠폰의 갯수는 0보다 커야 합니다.");
     }
-    return new Coupon(UUID.randomUUID(), name, remainCount);
+    return new Coupon(UUID.randomUUID(), name, description, remainCount);
   }
 
   public CouponResponse toResponse() {
-    return new CouponResponse(id.toString(), name, remainCount);
+    return new CouponResponse(this.id.toString(), this.name, this.description, this.remainCount);
   }
 }
