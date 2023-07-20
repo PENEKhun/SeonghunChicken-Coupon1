@@ -9,6 +9,29 @@
   <link rel="stylesheet" type="text/css" href="/style/style.css">
 </head>
 <body>
+<script>
+  function getCoupon() {
+    // /coupon-issue/{couponId}
+    const couponId = document.getElementById('coupon-id').value;
+    const url = '/coupon-issue/' + couponId;
+    if (couponId === '') {
+      alert('쿠폰 정보가 없습니다.');
+      return;
+    }
+
+    // get URL
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const couponResult = document.getElementById('coupon-result');
+      if (data['couponOriginId'] !== undefined) {
+        couponResult.innerHTML = '쿠폰이 발급되었습니다.<br/>' + data['id'];
+      } else {
+        couponResult.innerHTML = '쿠폰 발급에 실패했습니다.';
+      }
+    });
+  }
+</script>
 <div class="container">
   <h1 th:text="${coupon.getName()}"></h1>
   <div class="coupon-quantity" th:text="${coupon.getRemainCount()} + '개 남음'"></div>
@@ -16,6 +39,7 @@
   <div class="coupon-description" th:text="${coupon.getDescription()}"></div>
   <br/>
   <button id="get-coupon-btn" onclick="getCoupon()">쿠폰 발급하기</button>
+  <input type="hidden" id="coupon-id" th:value="${coupon.getId()}"/>
   <div id="coupon-result"></div>
 </div>
 </body>
