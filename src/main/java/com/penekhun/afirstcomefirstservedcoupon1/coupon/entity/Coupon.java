@@ -36,18 +36,25 @@ public class Coupon {
   @Comment("남은 쿠폰의 갯수")
   private Integer remainCount;
 
-  private Coupon(UUID id, String name, String description, Integer remainCount) {
-    this.id = id;
+  private Coupon(String name, String description, Integer remainCount) {
     this.name = name;
     this.description = description;
     this.remainCount = remainCount;
+  }
+
+  public boolean makeAvailable() {
+    return this.remainCount > 0;
+  }
+
+  public void decreaseRemainCount() {
+    this.remainCount--;
   }
 
   public static Coupon createNewCoupon(String name, String description, Integer remainCount) {
     if (remainCount <= 0) {
       throw new IllegalArgumentException("남은 쿠폰의 갯수는 0보다 커야 합니다.");
     }
-    return new Coupon(UUID.randomUUID(), name, description, remainCount);
+    return new Coupon(name, description, remainCount);
   }
 
   public CouponResponse toResponse() {
