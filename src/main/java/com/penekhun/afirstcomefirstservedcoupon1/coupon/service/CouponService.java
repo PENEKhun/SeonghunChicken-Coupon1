@@ -31,7 +31,7 @@ public class CouponService {
 
   @Transactional
   public GeneratedCoupon couponIssue(String uuidStr) {
-    Coupon coupon = couponRepository.findById(UUID.fromString(uuidStr))
+    Coupon coupon = couponRepository.findCouponForUpdate(UUID.fromString(uuidStr))
         .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 쿠폰입니다."));
 
     if (!coupon.makeAvailable()) {
