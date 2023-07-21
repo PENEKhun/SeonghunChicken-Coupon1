@@ -11,9 +11,10 @@ spring:
   # setting MySQL connection
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://172.105.237.249:3306/coupon?serverTimezone=Asia/Seoul
-    username: root
-    password: Spzkfkznqo123!
-#      url: jdbc:mysql://localhost:3306/coupon?serverTimezone=KST
-#      username: username
-#      password: password
+    url: jdbc:mysql://localhost:3306/coupon?serverTimezone=Asia/Seoul
+    username: username
+    password: password
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: false
