@@ -34,7 +34,7 @@ public class CouponService {
     Coupon coupon = couponRepository.findCouponForUpdate(UUID.fromString(uuidStr))
         .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 쿠폰입니다."));
 
-    if (!coupon.makeAvailable()) {
+    if (!coupon.isAvailable()) {
       throw new IllegalArgumentException("선착순 쿠폰이 모두 소진되었습니다.");
     }
 

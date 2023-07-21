@@ -41,7 +41,7 @@ public class Coupon {
     this.remainCount = remainCount;
   }
 
-  public boolean makeAvailable() {
+  public boolean isAvailable() {
     return this.remainCount > 0;
   }
 
